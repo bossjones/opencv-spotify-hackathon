@@ -5,7 +5,6 @@ import pygame
 pygame.mixer.init()
 pygame.mixer.music.load("audio/scream.wav")
 
-
 ## # play scream sound once
 ## pygame.mixer.music.play(0)
 
@@ -25,9 +24,14 @@ def detect(image):
         cv2.rectangle(image, (_face[0], _face[1]), (_face[0]+_face[2], _face[1]+_face[3]), (255,255,255))
 
 def repeat():
+    # read in current image from web cam, set value to image
     ret, image = cap.read()
+    # run detect on the image captured
     detect(image)
+    # Show detected image in window named w1
     cv2.imshow("w1", image)
+    # a keyboard binding function. Its argument is the time in milliseconds.
+    # The function waits for specified milliseconds for any keyboard event.
     cv2.waitKey(1)
 
 while True:
